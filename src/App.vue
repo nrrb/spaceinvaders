@@ -41,9 +41,17 @@ const margins = {
 }
 
 const invaderSize = {
-  width: 36,
-  height: 24,
+  width: 28,
+  height: 18,
 }
+
+const invaderPattern = [
+  ' ## # # ##  ### ##  # #  #  # # # # ',
+  '#   # # # # #   # # ### # # # # # # ',
+  '#    #  ##  ##  ##  ### ###  #   #  ',
+  '#    #  # # #   # # # # # # # # # # ',
+  ' ##  #  ##  ### # # # # # # # # # # ',
+]
 
 const bulletSizes = {
   player: { w: 3, h: 12, dy: -540 },
@@ -116,21 +124,25 @@ const createWave = () => {
   const canvas = canvasRef.value
   if (!canvas) return
   invaders = []
-  const rows = 3 + Math.min(4, state.wave)
-  const cols = 9
-  const spacingX = 70
-  const spacingY = 50
-  const startX = margins.left
+  const spacingX = 28
+  const spacingY = 34
+  const patternWidth = invaderPattern[0].length * spacingX
+  const startX = Math.max(
+    margins.left,
+    (canvas.width - patternWidth) / 2,
+  )
   const startY = margins.top
 
-  for (let row = 0; row < rows; row += 1) {
-    for (let col = 0; col < cols; col += 1) {
-      invaders.push({
-        x: startX + col * spacingX,
-        y: startY + row * spacingY,
-        width: invaderSize.width,
-        height: invaderSize.height,
-      })
+  for (let row = 0; row < invaderPattern.length; row += 1) {
+    for (let col = 0; col < invaderPattern[row].length; col += 1) {
+      if (invaderPattern[row][col] === '#') {
+        invaders.push({
+          x: startX + col * spacingX,
+          y: startY + row * spacingY,
+          width: invaderSize.width,
+          height: invaderSize.height,
+        })
+      }
     }
   }
 }
