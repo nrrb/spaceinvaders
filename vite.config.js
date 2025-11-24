@@ -21,5 +21,5 @@ export default defineConfig(({ mode }) => ({
   build: {
     outDir: 'docs',
   },
-  base: mode === 'production' ? '/spaceinvaders/' : '/'
+  base: mode === 'production' ? '/' : '/'
 }))
