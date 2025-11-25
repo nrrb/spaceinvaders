@@ -369,7 +369,7 @@ onBeforeUnmount(() => {
     <canvas ref="canvasRef" class="game-canvas"></canvas>
     <div class="hud">
       <div class="hud-left">
-        <p class="title">Space Invaders</p>
+        <p class="title">CyberMaxx Defense</p>
         <p class="stats">Score {{ state.score }} · Lives {{ state.lives }} · Wave {{ state.wave }}</p>
       </div>
       <div class="hud-right">
