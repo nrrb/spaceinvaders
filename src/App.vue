@@ -110,8 +110,7 @@ const resetGame = () => {
 }
 
 const startGame = () => {
-  if (state.status === 'running') return
-  if (state.status === 'ready') {
+  if (state.status === 'running' || state.status === 'ready') {
     resetGame()
     return
   }
